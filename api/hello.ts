@@ -1,23 +1,18 @@
+// hello.ts
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import Redis from 'ioredis';
 
-const redis = new Redis(process.env.REDIS_URL);
-
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const startTimeKey = 'server_start_time';
-
-  // Check if the start time exists in Redis
-  let startTime = await redis.get(startTimeKey);
-  
-  if (!startTime) {
-    // Set the start time if it doesn't exist
-    startTime = Date.now().toString();
-    await redis.set(startTimeKey, startTime);
-  }
-
-  const elapsedSeconds = Math.floor((Date.now() - parseInt(startTime, 10)) / 1000);
-  
-  return res.json({
+// This function will be called by the server to get the current timer value.
+export function getTimerData(startTime: number) {
+  const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+  return {
     timer: elapsedSeconds,
-  });
+  };
+}
+
+// Vercel handler if you are using this with Vercel
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  // Assuming you pass the startTime somehow
+  const startTime = Number(req.query.startTime);
+  const data = getTimerData(startTime);
+  return res.json(data);
 }
