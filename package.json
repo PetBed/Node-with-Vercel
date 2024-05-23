@@ -1,10 +1,41 @@
 {
-  "repository": "https://github.com/vercel/examples.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vercel/examples.git"
+  },
   "license": "MIT",
   "private": true,
   "devDependencies": {
     "@types/node": "^17.0.42",
-    "@vercel/node": "^2.9.6",
+    "@vercel/node": "^2.15.10",
     "typescript": "^4.7.3"
+  },
+  "name": "with-vercel",
+  "description": "Simple Node.js + Vercel example that returns a \"Hello World\" response.",
+  "bugs": {
+    "url": "https://github.com/vercel/examples/issues"
+  },
+  "homepage": "https://github.com/vercel/examples#readme",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jay",
+  "dependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-typescript": "^7.24.1",
+    "@babel/register": "^7.23.7",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.3.0",
+    "ts-node": "^10.9.2",
+    "uuid": "^9.0.1"
   }
 }
